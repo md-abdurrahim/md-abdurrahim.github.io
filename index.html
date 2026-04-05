@@ -6,157 +6,227 @@
     <title>MD ABDUR RAHIM | IT Support Specialist</title>
 
     <style>
+        /* Light & Dark Theme Variables */
         :root {
-            --bg: #f4f4f4;
+            --bg: #ffffff;
             --text: #0d1117;
             --card: #ffffff;
-            --header-bg: #0d1117;
-            --header-text: #ffffff;
+            --nav-bg: rgba(255, 255, 255, 0.8);
+            --hero-gradient: linear-gradient(135deg, #4f46e5, #3b82f6);
         }
 
         body.dark {
             --bg: #0d1117;
             --text: #ffffff;
             --card: #161b22;
-            --header-bg: #161b22;
-            --header-text: #ffffff;
+            --nav-bg: rgba(22, 27, 34, 0.8);
+            --hero-gradient: linear-gradient(135deg, #1e1b4b, #1e3a8a);
         }
 
+        /* Global Styles */
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
+            font-family: Arial, sans-serif;
             background: var(--bg);
             color: var(--text);
             transition: 0.3s ease;
         }
 
-        header {
-            background: var(--header-bg);
-            color: var(--header-text);
-            padding: 60px 20px;
-            text-align: center;
-            position: relative;
+        a { color: var(--text); text-decoration: none; }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 40px;
+            z-index: 1000;
         }
 
-        /* Theme toggle button */
+        nav a {
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        /* Theme Toggle */
         .theme-toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
+            padding: 8px 16px;
+            border: none;
             background: var(--card);
             color: var(--text);
-            border: none;
-            padding: 10px 18px;
             border-radius: 6px;
             cursor: pointer;
             font-weight: bold;
-            transition: 0.3s ease;
         }
 
-        .theme-toggle:hover {
-            opacity: 0.8;
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            background: var(--hero-gradient);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
         }
 
-        /* Profile photo */
-        .profile-photo {
-            width: 160px;
-            height: 160px;
+        .hero img {
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid white;
-            margin-top: 20px;
+            border: 5px solid white;
+            margin-bottom: 20px;
         }
 
-        header h1 { font-size: 42px; margin: 0; }
-        header p { font-size: 20px; margin-top: 10px; }
+        .hero h1 {
+            font-size: 48px;
+            margin: 10px 0;
+        }
 
+        .hero p {
+            font-size: 22px;
+            opacity: 0.9;
+        }
+
+        /* Sections */
         section {
-            padding: 40px 20px;
-            max-width: 900px;
-            margin: auto;
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 40px;
             background: var(--card);
-            margin-top: 20px;
-            border-radius: 8px;
-            transition: 0.3s ease;
+            border-radius: 10px;
         }
 
         h2 {
             border-left: 5px solid var(--text);
             padding-left: 10px;
+            margin-bottom: 20px;
         }
 
-        ul { line-height: 1.8; }
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
 
+        .card {
+            background: var(--card);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
         footer {
             text-align: center;
             padding: 20px;
-            background: var(--header-bg);
-            color: var(--header-text);
+            background: var(--nav-bg);
             margin-top: 40px;
         }
     </style>
 </head>
+
 <body>
 
-<header>
-    <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+<!-- Navigation -->
+<nav>
+    <div>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#certs">Certifications</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()">Theme</button>
+</nav>
 
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <img src="your-photo.jpg" alt="Profile Photo">
     <h1>MD ABDUR RAHIM</h1>
     <p>IT Support Specialist | ICT Engineering Student | Helsinki, Finland</p>
+</section>
 
-    <img src="your-photo.jpg" alt="Profile Photo" class="profile-photo">
-</header>
-
-<section>
+<!-- About -->
+<section id="about">
     <h2>About Me</h2>
     <p>
-        I am an IT Support Specialist student at Taitotalo and an ICT Engineering pathway student at Metropolia University of Applied Sciences. 
-        I am passionate about troubleshooting, customer support, and building strong technical foundations. 
+        I am an IT Support Specialist student at Taitotalo and an ICT Engineering pathway student at Metropolia University of Applied Sciences.
+        I specialize in troubleshooting, customer support, and building strong technical foundations.
         I am actively seeking a 3–6 month IT Support internship starting May 2026.
     </p>
 </section>
 
-<section>
+<!-- Skills -->
+<section id="skills">
     <h2>Skills</h2>
-    <ul>
-        <li>Technical Support & Helpdesk</li>
-        <li>Windows, macOS, Linux basics</li>
-        <li>Active Directory & Office 365</li>
-        <li>Networking fundamentals</li>
-        <li>Hardware & software troubleshooting</li>
-        <li>Customer service & communication</li>
-    </ul>
+    <div class="card-grid">
+        <div class="card">Windows & macOS Support</div>
+        <div class="card">Active Directory</div>
+        <div class="card">Office 365 Admin</div>
+        <div class="card">Networking Basics</div>
+        <div class="card">Hardware Troubleshooting</div>
+        <div class="card">Customer Support</div>
+    </div>
 </section>
 
-<section>
+<!-- Certifications -->
+<section id="certs">
     <h2>Certifications</h2>
-    <ul>
-        <li>Google IT Support (in progress)</li>
-        <li>CompTIA A+ (studying)</li>
-        <li>Cybersecurity basics</li>
-    </ul>
+    <div class="card-grid">
+        <div class="card">Google IT Support</div>
+        <div class="card">CompTIA A+ (studying)</div>
+        <div class="card">Cybersecurity Basics</div>
+        <div class="card">Microsoft 365 Fundamentals</div>
+    </div>
 </section>
 
-<section>
+<!-- Services -->
+<section id="services">
     <h2>IT Support Services</h2>
-    <ul>
-        <li>Device setup & configuration</li>
-        <li>Software installation & updates</li>
-        <li>Network troubleshooting</li>
-        <li>Account & access support</li>
-        <li>Basic cybersecurity practices</li>
-    </ul>
+    <div class="card-grid">
+        <div class="card">Remote IT Support</div>
+        <div class="card">Onsite Support</div>
+        <div class="card">Network Setup</div>
+        <div class="card">Device Configuration</div>
+        <div class="card">Software Installation</div>
+        <div class="card">Security Best Practices</div>
+    </div>
 </section>
 
-<section>
+<!-- Projects -->
+<section id="projects">
+    <h2>Projects</h2>
+    <p>Coming soon...</p>
+</section>
+
+<!-- Testimonials -->
+<section id="testimonials">
+    <h2>Testimonials</h2>
+    <p>Coming soon...</p>
+</section>
+
+<!-- Contact -->
+<section id="contact">
     <h2>Contact</h2>
     <p>Email: mdabdurrahim.eu@gmail.com</p>
-    <p>LinkedIn: 
-        <a href="https://www.linkedin.com/in/mdabdurrahim25" target="_blank">
-            linkedin.com/in/mdabdurrahim25
-        </a>
-    </p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/mdabdurrahim25" target="_blank">linkedin.com/in/mdabdurrahim25</a></p>
 </section>
 
 <footer>
