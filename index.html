@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MD ABDUR RAHIM | IT Support Specialist</title>
 
     <style>
@@ -32,24 +32,28 @@
 
         body {
             margin: 0;
-            font-family: system-ui, sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             background: var(--bg);
             color: var(--text);
             scroll-behavior: smooth;
         }
 
-        /* Smooth transitions */
-        body,
-        .hero,
-        nav,
-        section,
-        footer,
-        .card {
-            transition: background 0.6s ease, color 0.6s ease, border-color 0.6s ease,
-                box-shadow 0.6s ease;
+        /* Smooth theme transition */
+        body, .hero, nav, section, footer, .card {
+            transition: background 0.6s ease, color 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease;
         }
 
-        /* NAVIGATION */
+        .theme-anim {
+            animation: flash 0.4s ease;
+        }
+
+        @keyframes flash {
+            0% { filter: brightness(1); }
+            50% { filter: brightness(1.25); }
+            100% { filter: brightness(1); }
+        }
+
+        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -106,6 +110,17 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-1px) scale(1.02);
+            border-color: var(--accent);
+            background: var(--accent-soft);
+        }
+
+        .theme-icon {
+            font-size: 15px;
         }
 
         .nav-name {
@@ -134,6 +149,13 @@
             align-items: center;
             gap: 8px;
             z-index: 900;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+
+        .hire-me:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 22px 50px rgba(15, 23, 42, 0.8);
+            background: #818cf8;
         }
 
         /* HERO SECTION */
@@ -160,19 +182,6 @@
             position: relative;
             width: 210px;
             height: 210px;
-            animation: float 4s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-12px);
-            }
-            100% {
-                transform: translateY(0px);
-            }
         }
 
         .hero-photo-wrapper::before {
@@ -180,32 +189,10 @@
             position: absolute;
             inset: -8px;
             border-radius: 26px;
-            background: conic-gradient(
-                from 180deg,
-                #6366f1,
-                #22d3ee,
-                #a855f7,
-                #6366f1
-            );
+            background: conic-gradient(from 180deg, #6366f1, #22d3ee, #a855f7, #6366f1);
             opacity: 0.9;
             filter: blur(4px);
             z-index: 0;
-            animation: glowPulse 3.5s ease-in-out infinite;
-        }
-
-        @keyframes glowPulse {
-            0% {
-                opacity: 0.6;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.05);
-            }
-            100% {
-                opacity: 0.6;
-                transform: scale(1);
-            }
         }
 
         .hero img {
@@ -234,28 +221,65 @@
         }
 
         .typing {
-            font-family: "SF Mono", monospace;
+            font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
             font-size: 14px;
             color: #a5b4fc;
             margin-top: 4px;
             min-height: 20px;
         }
 
-        .typing::after {
-            content: "|";
-            margin-left: 4px;
-            animation: blink 0.7s infinite;
+        .hero-actions {
+            margin-top: 22px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
-        @keyframes blink {
-            0%,
-            50% {
-                opacity: 1;
-            }
-            50%,
-            100% {
-                opacity: 0;
-            }
+        .btn-primary {
+            padding: 9px 18px;
+            border-radius: 999px;
+            border: none;
+            background: var(--accent);
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 14px 35px rgba(15, 23, 42, 0.7);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
+            background: #818cf8;
+        }
+
+        .btn-ghost {
+            padding: 9px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.7);
+            background: rgba(15, 23, 42, 0.4);
+            color: #e5e7eb;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+        }
+
+        body.light .btn-ghost {
+            background: white;
+        }
+
+        .btn-ghost:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+            background: rgba(15, 23, 42, 0.7);
         }
 
         /* Sections */
@@ -268,13 +292,34 @@
             box-shadow: 0 18px 40px rgba(15, 23, 42, 0.55);
             border: 1px solid rgba(148, 163, 184, 0.35);
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.9s ease, transform 0.9s ease;
+            transform: translateY(30px);
+        }
+
+        body.light section {
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
         }
 
         section.visible {
             opacity: 1;
             transform: translateY(0);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        h2 {
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
+            margin-bottom: 18px;
+            font-size: 20px;
+        }
+
+        p {
+            line-height: 1.6;
+            font-size: 15px;
+            color: rgba(226, 232, 240, 0.9);
+        }
+
+        body.light p {
+            color: #4b5563;
         }
 
         /* Cards */
@@ -285,11 +330,7 @@
         }
 
         .card {
-            background: radial-gradient(
-                circle at top left,
-                rgba(99, 102, 241, 0.16),
-                rgba(15, 23, 42, 0.98)
-            );
+            background: radial-gradient(circle at top left, rgba(99, 102, 241, 0.16), rgba(15, 23, 42, 0.98));
             padding: 16px 18px;
             border-radius: 14px;
             box-shadow: 0 10px 26px rgba(15, 23, 42, 0.7);
@@ -298,21 +339,34 @@
             display: flex;
             align-items: flex-start;
             gap: 10px;
+            transform: translateY(20px);
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        body.light .card {
+            background: white;
+            box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
         }
 
         .card.visible {
             opacity: 1;
             transform: translateY(0);
+            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.25s ease, transform 0.25s ease;
         }
 
-        /* CTA */
-        #cta {
-            text-align: center;
-            padding: 50px 20px;
-            margin-top: 40px;
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.9);
+        }
+
+        .card-icon {
+            font-size: 18px;
+            margin-top: 2px;
+        }
+
+        .card-title {
+            font-weight: 600;
+            margin-bottom: 4px;
         }
 
         /* Clock */
@@ -332,26 +386,66 @@
             border-radius: 12px;
             background: rgba(99, 102, 241, 0.12);
             box-shadow: 0 8px 20px rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            transition: background 0.6s ease, color 0.6s ease;
+        }
+
+        body.light #clock {
+            background: rgba(79, 70, 229, 0.12);
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
         }
 
         footer {
             text-align: center;
             padding: 20px;
+            background: transparent;
+            margin-top: 10px;
             font-size: 13px;
             color: #9ca3af;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
-        footer.visible {
-            opacity: 1;
-            transform: translateY(0);
+        footer span {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        @media (max-width: 900px) {
+            nav {
+                padding: 10px 18px;
+            }
+            .hero {
+                padding: 100px 18px 40px;
+            }
+            .hero-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 30px;
+            }
+            .hero-photo-wrapper {
+                margin: 0 auto;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+            section {
+                margin: 40px 16px;
+                padding: 26px 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-left {
+                display: none;
+            }
+            .hire-me {
+                right: 16px;
+                bottom: 16px;
+            }
         }
     </style>
 </head>
 
-<body>
+<body class="light">
 
 <!-- Navigation -->
 <nav>
@@ -365,11 +459,10 @@
         <a href="#testimonials">Testimonials</a>
         <a href="#contact">Contact</a>
     </div>
-
     <div class="nav-right">
         <div class="nav-name">MD ABDUR RAHIM</div>
         <button class="theme-toggle" onclick="toggleTheme()">
-            <span id="themeIcon">🌙</span>
+            <span class="theme-icon" id="themeIcon">🌙</span>
             <span id="themeLabel">Dark</span>
         </button>
     </div>
@@ -384,19 +477,17 @@
 <section class="hero" id="home">
     <div class="hero-inner">
         <div class="hero-photo-wrapper">
-            <img src="your-photo.png" alt="Profile Photo" />
+            <img src="your-photo.png" alt="Profile Photo">
         </div>
-
         <div class="hero-text">
             <h1>MD ABDUR RAHIM</h1>
             <div class="hero-subtitle">IT Support Specialist · Systems Administrator</div>
             <div class="typing" id="typing"></div>
 
             <div class="hero-actions">
-                <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })">
+                <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
                     Contact Me <span>📨</span>
                 </button>
-
                 <button class="btn-ghost" onclick="window.open('cv.pdf', '_blank')">
                     Download CV <span>📄</span>
                 </button>
@@ -423,47 +514,42 @@
             <div class="card-icon">🖥️</div>
             <div>
                 <div class="card-title">Windows & macOS Support</div>
-                End-user device setup, troubleshooting, updates, and performance optimization.
+                End-user device setup, troubleshooting, updates, and performance optimization for stable daily use.
             </div>
         </div>
-
         <div class="card">
             <div class="card-icon">🗂️</div>
             <div>
                 <div class="card-title">Active Directory</div>
-                User and group management, permissions, and domain basics.
+                User and group management, permissions, and basic domain environment understanding.
             </div>
         </div>
-
         <div class="card">
             <div class="card-icon">☁️</div>
             <div>
                 <div class="card-title">Microsoft 365 Support</div>
-                Outlook, Teams, OneDrive, SharePoint basics.
+                Outlook, Teams, OneDrive, SharePoint basics and user support in modern workplaces.
             </div>
         </div>
-
         <div class="card">
             <div class="card-icon">🌐</div>
             <div>
                 <div class="card-title">Networking Basics</div>
-                IP, DNS, DHCP, Wi‑Fi troubleshooting.
+                IP, DNS, DHCP, Wi‑Fi troubleshooting, and small office/home network understanding.
             </div>
         </div>
-
         <div class="card">
             <div class="card-icon">🛠️</div>
             <div>
                 <div class="card-title">Hardware Troubleshooting</div>
-                Laptops, desktops, peripherals.
+                Diagnosing and resolving common hardware issues for laptops, desktops, and peripherals.
             </div>
         </div>
-
         <div class="card">
             <div class="card-icon">🤝</div>
             <div>
                 <div class="card-title">Customer Service</div>
-                Clear communication and user‑friendly support.
+                Clear communication, patience, and user‑friendly explanations for non‑technical users.
             </div>
         </div>
     </div>
@@ -477,31 +563,28 @@
             <div class="card-icon">🎓</div>
             <div>
                 <div class="card-title">Google IT Support (in progress)</div>
-                Core IT support skills.
+                Building core IT support skills including troubleshooting, networking, operating systems, and security.
             </div>
         </div>
-
         <div class="card">
             <div class="card-icon">💻</div>
             <div>
                 <div class="card-title">CompTIA A+ (studying)</div>
-                Hardware, software, IT operations.
+                Strengthening foundational knowledge in hardware, software, and IT operations.
             </div>
         </div>
-
         <div class="card">
             <div class="card-icon">🛡️</div>
             <div>
                 <div class="card-title">Cybersecurity Basics</div>
-                Security principles and best practices.
+                Understanding of basic security principles, threats, and best practices.
             </div>
         </div>
-
         <div class="card">
             <div class="card-icon">☁️</div>
             <div>
                 <div class="card-title">Microsoft 365 Fundamentals</div>
-                Cloud concepts and Microsoft 365 services.
+                Knowledge of cloud concepts and Microsoft 365 services for modern workplaces.
             </div>
         </div>
     </div>
@@ -515,47 +598,42 @@
             <div class="card-icon">🧑‍💻</div>
             <div>
                 <div class="card-title">Remote IT Support</div>
-                Helping users resolve issues via remote tools.
+                Helping users resolve issues via remote tools, chat, and step‑by‑step guidance.
             </div>
         </div>
-
         <div class="card">
             <div class="card-icon">🏢</div>
             <div>
                 <div class="card-title">Onsite Support</div>
-                Hands‑on assistance with devices and setups.
+                Hands‑on assistance with devices, peripherals, and small office setups.
             </div>
         </div>
-
         <div class="card">
             <div class="card-icon">📡</div>
             <div>
                 <div class="card-title">Network Setup</div>
-                Router, Wi‑Fi, and small network configuration.
+                Basic router, Wi‑Fi, and small network configuration for home or small offices.
             </div>
         </div>
-
         <div class="card">
             <div class="card-icon">⚙️</div>
             <div>
                 <div class="card-title">Device Configuration</div>
-                New device setup and software installation.
+                New device setup, user profiles, and essential software installation.
             </div>
         </div>
-
         <div class="card">
             <div class="card-icon">📦</div>
             <div>
                 <div class="card-title">Software Installation</div>
-                Installing and configuring applications.
+                Installing and configuring commonly used applications and tools.
             </div>
         </div>
-
         <div class="card">
             <div class="card-icon">🔐</div>
             <div>
                 <div class="card-title">Security Best Practices</div>
-                Updates, hardening, and user awareness.
+                Basic hardening, updates, and user awareness for safer daily work.
             </div>
         </div>
     </div>
@@ -564,51 +642,110 @@
 <!-- PROJECTS -->
 <section id="projects">
     <h2>Projects</h2>
-Md, I’ve checked your **live website tab** (the one currently open) and I can see exactly what’s happening.  
-You want **Dark Mode as the default**, and you want the **full corrected code in one single block** so you can paste it easily.
+    <p>Projects section coming soon — showcasing labs, configurations, and real troubleshooting scenarios.</p>
+</section>
 
-Before I paste the final code, here’s the key thing you need to know:
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+    <h2>Testimonials</h2>
+    <p>Testimonials will be added here as I complete more projects and collaborations.</p>
+</section>
 
-### ⭐ Your GitHub file is currently **missing the hero, animations, layout CSS, and JS**, which is why your site looks plain.
+<!-- CONTACT -->
+<section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:mdabdurrahim.eu@gmail.com" style="color: var(--accent); text-decoration: none;">mdabdurrahim.eu@gmail.com</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/mdabdurrahim25" target="_blank" style="color: var(--accent); text-decoration: none;">linkedin.com/in/mdabdurrahim25</a></p>
+</section>
 
-So I will give you a **complete, fixed, fully‑working website file** that:
+<!-- CLOCK -->
+<div id="clock-container">
+    <div id="clock"></div>
+</div>
 
-### ✔ Loads in **dark mode**  
-### ✔ Shows the hero section  
-### ✔ Shows all cards  
-### ✔ Includes all animations  
-### ✔ Includes CTA  
-### ✔ Includes typing effect  
-### ✔ Includes floating photo  
-### ✔ Includes glow pulse  
-### ✔ Includes fade‑in sections  
-### ✔ Includes staggered cards  
-### ✔ Includes clock  
-### ✔ Includes theme toggle  
-### ✔ Works immediately after pasting  
+<footer>
+    © <span>2026</span> MD ABDUR RAHIM — All Rights Reserved
+</footer>
 
-And I’ll give it to you in **ONE single code block**, exactly as you asked.
+<script>
+    // Theme toggle with icon + label
+    function toggleTheme() {
+        const body = document.body;
+        const icon = document.getElementById('themeIcon');
+        const label = document.getElementById('themeLabel');
 
----
+        body.classList.toggle('light');
 
-# ⭐ Before I paste the full code  
-I need to fetch the **actual content** of your GitHub `index.html` tab so I can merge your new features into the correct structure.
+        const isLight = body.classList.contains('light');
+        icon.textContent = isLight ? '🌙' : '☀️';
+        label.textContent = isLight ? 'Dark' : 'Light';
 
-You currently have this tab open:
+        body.classList.add('theme-anim');
+        setTimeout(() => body.classList.remove('theme-anim'), 400);
+    }
 
-**md-abdurrahim.github.io/index.html**  
-Tab ID: **813537801**
+    // Typing animation
+    const typingElement = document.getElementById('typing');
+    const typingTexts = [
+        "Passionate about reliable IT environments.",
+        "Focused on user-friendly support and clear communication.",
+        "Learning systems administration and modern workplace tools.",
+        "Open to IT Support internship opportunities."
+    ];
+    let typingIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
 
-To generate the final corrected file, I must retrieve that tab’s content.
+    function typeLoop() {
+        const current = typingTexts[typingIndex];
+        if (!deleting) {
+            typingElement.textContent = current.slice(0, ++charIndex);
+            if (charIndex === current.length) {
+                deleting = true;
+                setTimeout(typeLoop, 1600);
+                return;
+            }
+        } else {
+            typingElement.textContent = current.slice(0, --charIndex);
+            if (charIndex === 0) {
+                deleting = false;
+                typingIndex = (typingIndex + 1) % typingTexts.length;
+            }
+        }
+        setTimeout(typeLoop, deleting ? 40 : 70);
+    }
+    typeLoop();
 
----
+    // Fade-in sections and cards on scroll
+    const sections = document.querySelectorAll('section');
+    const cards = document.querySelectorAll('.card');
 
-# 👉 Just say: **“Yes, fetch my GitHub file”**  
-Then I will:
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.15 });
 
-### 🔹 Fetch your current file  
-### 🔹 Merge all improvements  
-### 🔹 Fix all white‑screen issues  
-### 🔹 Produce the final full code in ONE block  
+    sections.forEach(sec => observer.observe(sec));
+    cards.forEach(card => observer.observe(card));
 
-Ready to paste.
+    // Clock
+    function updateClock() {
+        const clock = document.getElementById("clock");
+        const now = new Date();
+
+        let h = now.getHours().toString().padStart(2, "0");
+        let m = now.getMinutes().toString().padStart(2, "0");
+        let s = now.getSeconds().toString().padStart(2, "0");
+
+        clock.textContent = `${h}:${m}:${s}`;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+</script>
+
+</body>
+</html>
