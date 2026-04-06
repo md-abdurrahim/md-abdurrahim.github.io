@@ -43,28 +43,38 @@
       backdrop-filter: blur(18px);
     }
 
-    .logo-circle {
-      width: 52px;
-      height: 52px;
-      border-radius: 999px;
-      border: 2px solid var(--accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 20px;
-      color: var(--accent);
-      box-shadow: 0 0 18px rgba(34, 197, 94, 0.4);
-    }
-
-    .name-title h1 {
-      font-size: 18px;
+    /* MOVING NAME */
+    .moving-name {
+      overflow: hidden;
+      white-space: nowrap;
+      width: 100%;
+      font-size: 16px;
       font-weight: 600;
+      margin-top: 10px;
+      color: var(--accent);
     }
 
-    .name-title span {
-      font-size: 12px;
+    .moving-name span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: moveName 10s linear infinite;
+    }
+
+    @keyframes moveName {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* CLOCK */
+    .clock {
+      margin-top: 15px;
+      font-size: 14px;
       color: #9ca3af;
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      border-radius: 8px;
+      width: fit-content;
+      background: rgba(0,0,0,0.3);
     }
 
     nav {
@@ -283,10 +293,14 @@
   <aside class="sidebar">
     <div>
       <div class="logo-circle">MR</div>
-      <div class="name-title">
-        <h1>MD ABDUR RAHIM</h1>
-        <span>IT Support Specialist · Helsinki</span>
+
+      <!-- MOVING NAME -->
+      <div class="moving-name">
+        <span>MD ABDUR RAHIM — IT SUPPORT SPECIALIST — </span>
       </div>
+
+      <!-- DIGITAL CLOCK -->
+      <div class="clock" id="clock">00:00:00</div>
     </div>
 
     <nav>
@@ -388,7 +402,7 @@
         <p class="section-sub">Let’s talk about internship or support work</p>
 
         <div class="contact-list">
-          <div>Email: <span>your-email@example.com</span></div>
+          <div>Email: <span>mdabdur.rahim@metropolia.fi</span></div>
           <div>Location: <span>Helsinki, Finland</span></div>
           <div>Availability: <span>3–6 month internship from May 2026</span></div>
         </div>
@@ -398,7 +412,18 @@
   </main>
 
   <script>
-    // Smooth scroll + active link
+    /* DIGITAL CLOCK */
+    function updateClock() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, "0");
+      const m = String(now.getMinutes()).padStart(2, "0");
+      const s = String(now.getSeconds()).padStart(2, "0");
+      document.getElementById("clock").textContent = `${h}:${m}:${s}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    /* Smooth scroll + active link */
     const links = document.querySelectorAll("nav a");
     const sections = [...document.querySelectorAll("section")];
 
