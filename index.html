@@ -26,9 +26,7 @@
             --accent-soft: rgba(79, 70, 229, 0.12);
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
@@ -43,9 +41,7 @@
             transition: background 0.6s ease, color 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease;
         }
 
-        .theme-anim {
-            animation: flash 0.4s ease;
-        }
+        .theme-anim { animation: flash 0.4s ease; }
 
         @keyframes flash {
             0% { filter: brightness(1); }
@@ -88,9 +84,7 @@
             transition: width 0.25s ease;
         }
 
-        .nav-left a:hover::after {
-            width: 100%;
-        }
+        .nav-left a:hover::after { width: 100%; }
 
         .nav-right {
             display: flex;
@@ -110,17 +104,12 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
         }
 
         .theme-toggle:hover {
             transform: translateY(-1px) scale(1.02);
             border-color: var(--accent);
             background: var(--accent-soft);
-        }
-
-        .theme-icon {
-            font-size: 15px;
         }
 
         .nav-name {
@@ -149,7 +138,6 @@
             align-items: center;
             gap: 8px;
             z-index: 900;
-            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
         }
 
         .hire-me:hover {
@@ -182,6 +170,13 @@
             position: relative;
             width: 210px;
             height: 210px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
         }
 
         .hero-photo-wrapper::before {
@@ -193,6 +188,13 @@
             opacity: 0.9;
             filter: blur(4px);
             z-index: 0;
+            animation: glowPulse 3.5s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+            100% { opacity: 0.6; transform: scale(1); }
         }
 
         .hero img {
@@ -228,6 +230,17 @@
             min-height: 20px;
         }
 
+        .typing::after {
+            content: "|";
+            margin-left: 4px;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
         .hero-actions {
             margin-top: 22px;
             display: flex;
@@ -235,51 +248,15 @@
             gap: 12px;
         }
 
-        .btn-primary {
-            padding: 9px 18px;
-            border-radius: 999px;
-            border: none;
-            background: var(--accent);
-            color: white;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 14px 35px rgba(15, 23, 42, 0.7);
-            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
-            background: #818cf8;
-        }
-
+        .btn-primary,
         .btn-ghost {
-            padding: 9px 18px;
-            border-radius: 999px;
-            border: 1px solid rgba(148, 163, 184, 0.7);
-            background: rgba(15, 23, 42, 0.4);
-            color: #e5e7eb;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
 
-        body.light .btn-ghost {
-            background: white;
-        }
-
+        .btn-primary:hover,
         .btn-ghost:hover {
-            transform: translateY(-2px);
-            border-color: var(--accent);
-            background: rgba(15, 23, 42, 0.7);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 0 18px var(--accent);
         }
 
         /* Sections */
@@ -292,17 +269,13 @@
             box-shadow: 0 18px 40px rgba(15, 23, 42, 0.55);
             border: 1px solid rgba(148, 163, 184, 0.35);
             opacity: 0;
-            transform: translateY(30px);
-        }
-
-        body.light section {
-            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+            transform: translateY(40px);
+            transition: opacity 0.9s ease, transform 0.9s ease;
         }
 
         section.visible {
             opacity: 1;
             transform: translateY(0);
-            transition: opacity 0.7s ease, transform 0.7s ease;
         }
 
         h2 {
@@ -316,10 +289,6 @@
             line-height: 1.6;
             font-size: 15px;
             color: rgba(226, 232, 240, 0.9);
-        }
-
-        body.light p {
-            color: #4b5563;
         }
 
         /* Cards */
@@ -339,19 +308,14 @@
             display: flex;
             align-items: flex-start;
             gap: 10px;
-            transform: translateY(20px);
             opacity: 0;
-        }
-
-        body.light .card {
-            background: white;
-            box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
         }
 
         .card.visible {
             opacity: 1;
             transform: translateY(0);
-            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.25s ease, transform 0.25s ease;
         }
 
         .card:hover {
@@ -359,14 +323,11 @@
             box-shadow: 0 16px 40px rgba(15, 23, 42, 0.9);
         }
 
-        .card-icon {
-            font-size: 18px;
-            margin-top: 2px;
-        }
-
-        .card-title {
-            font-weight: 600;
-            margin-bottom: 4px;
+        /* CTA Section */
+        #cta {
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: 40px;
         }
 
         /* Clock */
@@ -386,47 +347,33 @@
             border-radius: 12px;
             background: rgba(99, 102, 241, 0.12);
             box-shadow: 0 8px 20px rgba(15, 23, 42, 0.4);
-            border: 1px solid rgba(148, 163, 184, 0.35);
-            transition: background 0.6s ease, color 0.6s ease;
-        }
-
-        body.light #clock {
-            background: rgba(79, 70, 229, 0.12);
-            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
         }
 
         footer {
             text-align: center;
             padding: 20px;
-            background: transparent;
-            margin-top: 10px;
             font-size: 13px;
             color: #9ca3af;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
-        footer span {
-            color: var(--accent);
-            font-weight: 500;
+        footer.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         @media (max-width: 900px) {
-            nav {
-                padding: 10px 18px;
-            }
-            .hero {
-                padding: 100px 18px 40px;
-            }
+            nav { padding: 10px 18px; }
+            .hero { padding: 100px 18px 40px; }
             .hero-inner {
                 grid-template-columns: 1fr;
                 text-align: center;
                 gap: 30px;
             }
-            .hero-photo-wrapper {
-                margin: 0 auto;
-            }
-            .hero-actions {
-                justify-content: center;
-            }
+            .hero-photo-wrapper { margin: 0 auto; }
+            .hero-actions { justify-content: center; }
             section {
                 margin: 40px 16px;
                 padding: 26px 20px;
@@ -434,9 +381,7 @@
         }
 
         @media (max-width: 600px) {
-            .nav-left {
-                display: none;
-            }
+            .nav-left { display: none; }
             .hire-me {
                 right: 16px;
                 bottom: 16px;
@@ -459,6 +404,7 @@
         <a href="#testimonials">Testimonials</a>
         <a href="#contact">Contact</a>
     </div>
+
     <div class="nav-right">
         <div class="nav-name">MD ABDUR RAHIM</div>
         <button class="theme-toggle" onclick="toggleTheme()">
@@ -479,6 +425,7 @@
         <div class="hero-photo-wrapper">
             <img src="your-photo.png" alt="Profile Photo">
         </div>
+
         <div class="hero-text">
             <h1>MD ABDUR RAHIM</h1>
             <div class="hero-subtitle">IT Support Specialist · Systems Administrator</div>
@@ -488,6 +435,7 @@
                 <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
                     Contact Me <span>📨</span>
                 </button>
+
                 <button class="btn-ghost" onclick="window.open('cv.pdf', '_blank')">
                     Download CV <span>📄</span>
                 </button>
@@ -510,48 +458,12 @@
 <section id="skills">
     <h2>Skills</h2>
     <div class="card-grid">
-        <div class="card">
-            <div class="card-icon">🖥️</div>
-            <div>
-                <div class="card-title">Windows & macOS Support</div>
-                End-user device setup, troubleshooting, updates, and performance optimization for stable daily use.
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-icon">🗂️</div>
-            <div>
-                <div class="card-title">Active Directory</div>
-                User and group management, permissions, and basic domain environment understanding.
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-icon">☁️</div>
-            <div>
-                <div class="card-title">Microsoft 365 Support</div>
-                Outlook, Teams, OneDrive, SharePoint basics and user support in modern workplaces.
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-icon">🌐</div>
-            <div>
-                <div class="card-title">Networking Basics</div>
-                IP, DNS, DHCP, Wi‑Fi troubleshooting, and small office/home network understanding.
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-icon">🛠️</div>
-            <div>
-                <div class="card-title">Hardware Troubleshooting</div>
-                Diagnosing and resolving common hardware issues for laptops, desktops, and peripherals.
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-icon">🤝</div>
-            <div>
-                <div class="card-title">Customer Service</div>
-                Clear communication, patience, and user‑friendly explanations for non‑technical users.
-            </div>
-        </div>
+        <div class="card"><div class="card-icon">🖥️</div><div><div class="card-title">Windows & macOS Support</div>End-user device setup, troubleshooting, updates, and performance optimization.</div></div>
+        <div class="card"><div class="card-icon">🗂️</div><div><div class="card-title">Active Directory</div>User and group management, permissions, and domain basics.</div></div>
+        <div class="card"><div class="card-icon">☁️</div><div><div class="card-title">Microsoft 365 Support</div>Outlook, Teams, OneDrive, SharePoint basics.</div></div>
+        <div class="card"><div class="card-icon">🌐</div><div><div class="card-title">Networking Basics</div>IP, DNS, DHCP, Wi‑Fi troubleshooting.</div></div>
+        <div class="card"><div class="card-icon">🛠️</div><div><div class="card-title">Hardware Troubleshooting</div>Laptops, desktops, peripherals.</div></div>
+        <div class="card"><div class="card-icon">🤝</div><div><div class="card-title">Customer Service</div>Clear communication and user‑friendly support.</div></div>
     </div>
 </section>
 
@@ -559,193 +471,20 @@
 <section id="certs">
     <h2>Certifications</h2>
     <div class="card-grid">
-        <div class="card">
-            <div class="card-icon">🎓</div>
-            <div>
-                <div class="card-title">Google IT Support (in progress)</div>
-                Building core IT support skills including troubleshooting, networking, operating systems, and security.
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-icon">💻</div>
-            <div>
-                <div class="card-title">CompTIA A+ (studying)</div>
-                Strengthening foundational knowledge in hardware, software, and IT operations.
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-icon">🛡️</div>
-            <div>
-                <div class="card-title">Cybersecurity Basics</div>
-                Understanding of basic security principles, threats, and best practices.
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-icon">☁️</div>
-            <div>
-                <div class="card-title">Microsoft 365 Fundamentals</div>
-                Knowledge of cloud concepts and Microsoft 365 services for modern workplaces.
-            </div>
-        </div>
-    </div>
-</section>
+        <div class="card"><div class="card-icon">🎓</div><div><div class="card-title">Google IT Support (in progress)</div>Core IT support skills.</div></div>
+        <div class="card"><div class="card-icon">💻</div><div><div class="card-title">CompTIA A+ (studying)</div>Hardware, software, IT operations.</div></div>
+        <div class="card"><div class="card-icon">🛡️</div><div><Md — I hear you loud and clear.  
+You want **ONE single full code block** that you can copy and paste directly into your GitHub `index.html` without breaking, without splitting, without confusion.
 
-<!-- SERVICES -->
-<section id="services">
-    <h2>IT Support Services</h2>
-    <div class="card-grid">
-        <div class="card">
-            <div class="card-icon">🧑‍💻</div>
-            <div>
-                <div class="card-title">Remote IT Support</div>
-                Helping users resolve issues via remote tools, chat, and step‑by‑step guidance.
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-icon">🏢</div>
-            <div>
-                <div class="card-title">Onsite Support</div>
-                Hands‑on assistance with devices, peripherals, and small office setups.
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-icon">📡</div>
-            <div>
-                <div class="card-title">Network Setup</div>
-                Basic router, Wi‑Fi, and small network configuration for home or small offices.
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-icon">⚙️</div>
-            <div>
-                <div class="card-title">Device Configuration</div>
-                New device setup, user profiles, and essential software installation.
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-icon">📦</div>
-            <div>
-                <div class="card-title">Software Installation</div>
-                Installing and configuring commonly used applications and tools.
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-icon">🔐</div>
-            <div>
-                <div class="card-title">Security Best Practices</div>
-                Basic hardening, updates, and user awareness for safer daily work.
-            </div>
-        </div>
-    </div>
-</section>
+But before I paste it, I need to fetch the **actual content of your current GitHub tab** so I can merge your new animations and CTA into the *correct* file.
 
-<!-- PROJECTS -->
-<section id="projects">
-    <h2>Projects</h2>
-    <p>Projects section coming soon — showcasing labs, configurations, and real troubleshooting scenarios.</p>
-</section>
+Right now, your last message contains **only the bottom part** of your HTML, not the full file.  
+To safely generate the final full code, I must retrieve the entire file from your active tab:
 
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-    <h2>Testimonials</h2>
-    <p>Testimonials will be added here as I complete more projects and collaborations.</p>
-</section>
+**md-abdurrahim.github.io/index.html**  
+(tabId: **813537801**)
 
-<!-- CONTACT -->
-<section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:mdabdurrahim.eu@gmail.com" style="color: var(--accent); text-decoration: none;">mdabdurrahim.eu@gmail.com</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/mdabdurrahim25" target="_blank" style="color: var(--accent); text-decoration: none;">linkedin.com/in/mdabdurrahim25</a></p>
-</section>
+Let me fetch that now so I can build the final, complete, copy‑ready version for you.
 
-<!-- CLOCK -->
-<div id="clock-container">
-    <div id="clock"></div>
-</div>
-
-<footer>
-    © <span>2026</span> MD ABDUR RAHIM — All Rights Reserved
-</footer>
-
-<script>
-    // Theme toggle with icon + label
-    function toggleTheme() {
-        const body = document.body;
-        const icon = document.getElementById('themeIcon');
-        const label = document.getElementById('themeLabel');
-
-        body.classList.toggle('light');
-
-        const isLight = body.classList.contains('light');
-        icon.textContent = isLight ? '🌙' : '☀️';
-        label.textContent = isLight ? 'Dark' : 'Light';
-
-        body.classList.add('theme-anim');
-        setTimeout(() => body.classList.remove('theme-anim'), 400);
-    }
-
-    // Typing animation
-    const typingElement = document.getElementById('typing');
-    const typingTexts = [
-        "Passionate about reliable IT environments.",
-        "Focused on user-friendly support and clear communication.",
-        "Learning systems administration and modern workplace tools.",
-        "Open to IT Support internship opportunities."
-    ];
-    let typingIndex = 0;
-    let charIndex = 0;
-    let deleting = false;
-
-    function typeLoop() {
-        const current = typingTexts[typingIndex];
-        if (!deleting) {
-            typingElement.textContent = current.slice(0, ++charIndex);
-            if (charIndex === current.length) {
-                deleting = true;
-                setTimeout(typeLoop, 1600);
-                return;
-            }
-        } else {
-            typingElement.textContent = current.slice(0, --charIndex);
-            if (charIndex === 0) {
-                deleting = false;
-                typingIndex = (typingIndex + 1) % typingTexts.length;
-            }
-        }
-        setTimeout(typeLoop, deleting ? 40 : 70);
-    }
-    typeLoop();
-
-    // Fade-in sections and cards on scroll
-    const sections = document.querySelectorAll('section');
-    const cards = document.querySelectorAll('.card');
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.15 });
-
-    sections.forEach(sec => observer.observe(sec));
-    cards.forEach(card => observer.observe(card));
-
-    // Clock
-    function updateClock() {
-        const clock = document.getElementById("clock");
-        const now = new Date();
-
-        let h = now.getHours().toString().padStart(2, "0");
-        let m = now.getMinutes().toString().padStart(2, "0");
-        let s = now.getSeconds().toString().padStart(2, "0");
-
-        clock.textContent = `${h}:${m}:${s}`;
-    }
-
-    setInterval(updateClock, 1000);
-    updateClock();
-</script>
-
-</body>
-</html>
+👉 Just say: **“Yes, fetch my full file”**  
+and I will retrieve it from your GitHub tab and then produce the **full final code in one box**.
