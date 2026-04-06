@@ -5,7 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MD ABDUR RAHIM | IT Support Specialist</title>
 
-    <style>
+    <style>// Fade-in sections and cards
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('section, .card').forEach(el => observer.observe(el));
+
         :root {
             --bg: #050816;
             --text: #e5e7eb;
