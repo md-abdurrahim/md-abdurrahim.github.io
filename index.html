@@ -3,201 +3,241 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MD ABDUR RAHIM | IT Support Specialist</title>
+<title>Md Abdur Rahim | IT Support</title>
 
 <style>
-:root {
-    --bg:#050816;
-    --text:#e5e7eb;
-    --card:#0b1020;
-    --accent:#6366f1;
+/* ================= BASE ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-body.light {
-    --bg:#f9fafb;
-    --text:#0f172a;
-    --card:#ffffff;
-    --accent:#4f46e5;
-}
-
-* { box-sizing:border-box; }
-
 body {
-    margin:0;
-    font-family:system-ui,Segoe UI,sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    scroll-behavior:smooth;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: #0b0c10;
+  color: #ffffff;
+  overflow-x: hidden;
 }
 
-/* NAV */
+/* ================= CURSOR GLOW ================= */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(99,102,241,0.12), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(34,211,238,0.08), transparent 40%);
+  z-index: -1;
+  animation: bgMove 20s linear infinite;
+}
+@keyframes bgMove {
+  50% { transform: translateY(-40px); }
+}
+
+/* ================= NAV ================= */
 nav {
-    position:fixed;
-    top:0;
-    width:100%;
-    padding:12px 24px;
-    background:rgba(0,0,0,.6);
-    display:flex;
-    justify-content:space-between;
-    z-index:1000;
+  position: fixed;
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1000;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(12px);
 }
 nav a {
-    color:var(--text);
-    margin:0 10px;
-    text-decoration:none;
-    font-size:14px;
+  margin-left: 20px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  opacity: 0.8;
 }
+nav a:hover { opacity: 1; }
 
-/* HERO */
+/* ================= HERO ================= */
 .hero {
-    min-height:85vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding-top:80px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .hero-inner {
-    text-align:center;
-    animation:fadeUp 1s ease forwards;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 60px;
+  max-width: 1200px;
 }
-@keyframes fadeUp {
-    from { opacity:0; transform:translateY(30px); }
-    to   { opacity:1; transform:translateY(0); }
+.hero img {
+  width: 260px;
+  border-radius: 20px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+}
+.hero h1 {
+  font-size: 46px;
+  line-height: 1.1;
+}
+.hero h1 span {
+  color: #6366f1;
+}
+.hero p {
+  margin-top: 20px;
+  font-size: 18px;
+  opacity: 0.8;
+}
+.typing {
+  margin-top: 12px;
+  color: #a5b4fc;
+  font-family: monospace;
 }
 
-/* SECTIONS */
+/* ================= SECTIONS ================= */
 section {
-    max-width:900px;
-    margin:80px auto;
-    padding:30px;
-    background:var(--card);
-    border-radius:16px;
-    opacity:0;
-    transform:translateY(30px);
-    transition:0.8s ease;
+  max-width: 1200px;
+  margin: 120px auto;
+  padding: 0 40px;
 }
-section.visible {
-    opacity:1;
-    transform:translateY(0);
+section h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #6366f1;
 }
 
-/* CARDS */
-.card-grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:16px;
+/* ================= CARDS ================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 25px;
 }
 .card {
-    padding:16px;
-    border-radius:14px;
-    background:rgba(0,0,0,.2);
+  padding: 26px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 18px;
+  backdrop-filter: blur(12px);
+  transition: transform 0.4s ease;
+}
+.card:hover {
+  transform: translateY(-10px);
+}
+.card h3 {
+  margin-bottom: 8px;
+  color: #a5b4fc;
+  font-size: 18px;
 }
 
-/* BUTTON */
-.btn {
-    padding:10px 20px;
-    border-radius:999px;
-    border:none;
-    background:var(--accent);
-    color:white;
-    cursor:pointer;
+/* ================= FLOAT ANIMATION ================= */
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+  50% { transform: translateY(-12px); }
 }
 
-/* CLOCK */
-#clock {
-    font-size:26px;
-    text-align:center;
-    color:var(--accent);
-    margin-top:20px;
-}
-
-/* FOOTER */
+/* ================= FOOTER ================= */
 footer {
-    text-align:center;
-    margin:20px;
-    opacity:.8;
+  padding: 40px;
+  text-align: center;
+  opacity: 0.6;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width: 900px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
 }
 </style>
 </head>
 
-<body class="light">
+<body>
 
 <nav>
-<div>
-<a href="#home">Home</a>
-<a href="#about">About</a>
-<a href="#skills">Skills</a>
-<a href="#contact">Contact</a>
-</div>
-<button onclick="toggleTheme()" class="btn">Theme</button>
+  <strong>Md Abdur Rahim</strong>
+  <div>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#services">Services</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
 </nav>
 
 <!-- HERO -->
-<section id="home" class="hero visible">
-<div class="hero-inner">
-<h1>MD ABDUR RAHIM</h1>
-<p>IT Support Specialist · Student</p>
-<button class="btn">Contact Me</button>
+<div class="hero">
+  <div class="hero-inner">
+    <img src="rahim.jpg" alt="Rahim Photo" class="float">
+    <div>
+      <h1>Hello, I’m <span>Md Abdur Rahim</span></h1>
+      <p>IT Support Technician / System Administrator</p>
+      <div class="typing" id="typing"></div>
+    </div>
+  </div>
 </div>
-</section>
 
 <!-- ABOUT -->
 <section id="about">
-<h2>About Me</h2>
-<p>
-I am studying Tieto‑ ja viestintätekniikan perustutkinto at Taitotalo and developing my skills in IT Support,
-systems administration and user support.
-</p>
+  <h2>About Me</h2>
+  <p>
+    I am studying Information and Communication Technology (ICT) and focusing on IT support,
+    system administration and user support. I enjoy troubleshooting, helping users,
+    and learning modern IT environments.
+  </p>
 </section>
 
 <!-- SKILLS -->
 <section id="skills">
-<h2>Skills</h2>
-<div class="card-grid">
-<div class="card">Windows & macOS</div>
-<div class="card">Microsoft 365</div>
-<div class="card">Networking Basics</div>
-<div class="card">Hardware Support</div>
-</div>
+  <h2>Skills</h2>
+  <div class="grid">
+    <div class="card float"><h3>Windows & macOS</h3>User support, troubleshooting</div>
+    <div class="card float"><h3>Microsoft 365</h3>Outlook, Teams, OneDrive</div>
+    <div class="card float"><h3>Networking</h3>IP, DNS, Wi‑Fi troubleshooting</div>
+    <div class="card float"><h3>Hardware</h3>PCs, printers, peripherals</div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <h2>Services</h2>
+  <div class="grid">
+    <div class="card">Remote IT Support</div>
+    <div class="card">On‑site Support</div>
+    <div class="card">Device Setup</div>
+    <div class="card">User Training</div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <h2>Projects</h2>
+  <p>Coming soon — labs, ticket scenarios, and system setups.</p>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-<h2>Contact</h2>
-<p>Email: mdabdur.rahim@metropolia.fi</p>
-<div id="clock"></div>
+  <h2>Contact</h2>
+  <p>Email: mdabdur.rahim@metropolia.fi</p>
 </section>
 
 <footer>
-© 2026 MD ABDUR RAHIM
+  © 2026 Md Abdur Rahim
 </footer>
 
 <script>
-/* THEME */
-function toggleTheme() {
-    document.body.classList.toggle("light");
-}
-
-/* REVEAL ON SCROLL */
-const sections = document.querySelectorAll("section");
-
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if(entry.isIntersecting){
-            entry.target.classList.add("visible");
-        }
-    });
-},{ threshold:0.15 });
-
-sections.forEach(sec => observer.observe(sec));
-
-/* CLOCK */
-setInterval(()=>{
-    const d=new Date();
-    document.getElementById("clock").textContent =
-    `${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}:${String(d.getSeconds()).padStart(2,"0")}`;
-},1000);
+/* Typing animation */
+const texts=[
+  "IT Support Specialist",
+  "System Administration Student",
+  "Open to Internship Opportunities"
+];
+let i=0,j=0,del=false;
+(function type(){
+  const el=document.getElementById("typing");
+  el.textContent=texts[i].slice(0,del?j--:++j);
+  if(j===texts[i].length) del=true;
+  if(j===0){ del=false; i=(i+1)%texts.length; }
+  setTimeout(type, del?50:80);
+})();
 </script>
 
 </body>
 </html>
-``
