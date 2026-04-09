@@ -1,158 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Md Abdur Rahim</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Md Abdur Rahim | IT Support</title>
 
-  <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
-  <link rel="stylesheet" href="./assets/css/style.css">
+<style>
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+/* ================= COLORS ================= */
+:root {
+  --bg: #0f1224;
+  --card: rgba(255,255,255,0.08);
+  --accent: #6366f1;
+  --text: #e5e7eb;
+}
+
+/* ================= BODY ================= */
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ================= BACKGROUND ANIMATION ================= */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(99,102,241,.18), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(34,211,238,.12), transparent 40%);
+  z-index: -1;
+  animation: bgMove 16s ease-in-out infinite;
+}
+
+@keyframes bgMove {
+  50% { transform: translateY(-50px); }
+}
+
+/* ================= LAYOUT ================= */
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+  width: 280px;
+  padding: 30px;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(14px);
+  animation: slideInLeft 1s ease;
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-60px); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+.sidebar img {
+  width: 120px;
+  border-radius: 18px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 25px var(--accent);
+  animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+  50% { transform: translateY(-10px); }
+}
+
+.sidebar h1 {
+  font-size: 22px;
+}
+
+.sidebar p {
+  opacity: 0.8;
+  margin-top: 6px;
+}
+
+/* ================= MAIN ================= */
+.main {
+  flex: 1;
+  padding: 50px;
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity:0 }
+  to   { opacity:1 }
+}
+
+/* ================= SECTIONS ================= */
+section {
+  margin-bottom: 80px;
+}
+
+section h2 {
+  font-size: 32px;
+  color: var(--accent);
+  margin-bottom: 20px;
+  position: relative;
+}
+
+section h2::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 3px;
+  background: var(--accent);
+  left: 0;
+  bottom: -6px;
+}
+
+/* ================= CARDS ================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+  gap: 24px;
+}
+
+.card {
+  background: var(--card);
+  padding: 26px;
+  border-radius: 22px;
+  backdrop-filter: blur(12px);
+  transition: 0.4s;
+  animation: popUp 0.8s ease both;
+}
+
+@keyframes popUp {
+  from { opacity:0; transform: translateY(20px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+
+.card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 0 40px rgba(99,102,241,0.4);
+}
+
+.card h3 {
+  color: #a5b4fc;
+  margin-bottom: 8px;
+}
+
+/* ================= BUTTON ================= */
+.btn {
+  padding: 12px 26px;
+  border-radius: 999px;
+  background: var(--accent);
+  border: none;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  box-shadow: 0 0 25px var(--accent);
+  transform: scale(1.05);
+}
+
+/* ================= FOOTER ================= */
+footer {
+  text-align: center;
+  opacity: 0.6;
+  margin-top: 40px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width: 900px){
+  .container {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    text-align: center;
+  }
+}
+</style>
 </head>
 
 <body>
 
-<main>
+<div class="container">
 
-<!-- SIDEBAR -->
-<aside class="sidebar" data-sidebar>
-
-  <div class="sidebar-info">
-
-    <figure class="avatar-box">
-      <img src="./assets/images/my-avatar.jpg" alt="Md Abdur Rahim" width="80">
-    </figure>
-
-    <div class="info-content">
-      <h1 class="name" title="Md Abdur Rahim">Md Abdur Rahim</h1>
-      <h2 class="title">IT Support Specialist<br/>Systems Administrator</h2>
-    </div>
-
-    <button class="info-more-btn" data-sidebar-btn>
-      <span>Show Contacts</span>
-      <ion-icon name="chevron-down"></ion-icon>
-    </button>
-
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <rahim.jpg alt="Md Abdur Rahim">
+    <h1>Md Abdur Rahim</h1>
+    <p>IT Support Specialist</p>
+    <p>ICT Student · Taitotalo</p>
   </div>
 
-  <div class="sidebar-info_more">
+  <!-- MAIN CONTENT -->
+  <div class="main">
 
-    <div class="separator"></div>
+    <section>
+      <h2>About Me</h2>
+      <p>
+        I am an IT support student studying
+        <strong>Tieto‑ ja viestintätekniikan perustutkinto</strong>
+        at Taitotalo. I enjoy troubleshooting systems,
+        helping users, and learning modern IT environments.
+      </p>
+    </section>
 
-    <ul class="contacts-list">
-
-      <!-- EMAIL -->
-      <li class="contact-item">
-        <div class="icon-box">
-          <ion-icon name="mail-outline"></ion-icon>
+    <section>
+      <h2>Skills</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Windows & macOS</h3>
+          User support, troubleshooting
         </div>
-        <div class="contact-info">
-          <p class="contact-title">Email</p>
-          <a href="mailto:mdabdur.rahim@metropolia.fi" class="contact-link">
-            mdabdur.rahim@metropolia.fi
-          </a>
+        <div class="card">
+          <h3>Microsoft 365</h3>
+          Outlook, Teams, OneDrive
         </div>
-      </li>
+        <div class="card">
+          <h3>Networking</h3>
+          IP, DNS, Wi‑Fi issues
+        </div>
+        <div class="card">
+          <h3>Hardware</h3>
+          PCs, printers, peripherals
+        </div>
+      </div>
+    </section>
 
-      <!-- PHONE (YOUR NUMBER) -->
-      <li class="contact-item">
-        <div class="icon-box">
-          <ion-icon name="phone-portrait-outline"></ion-icon>
-        </div>
-        <div class="contact-info">
-          <p class="contact-title">Phone</p>
-          <a href="tel:+358XXXXXXXXX" class="contact-link">
-            +358 XX XXX XXXX
-          </a>
-        </div>
-      </li>
+    <section>
+      <h2>Services</h2>
+      <div class="grid">
+        <div class="card">Remote IT Support</div>
+        <div class="card">On‑site Support</div>
+        <div class="card">Device Setup</div>
+        <div class="card">User Assistance</div>
+      </div>
+    </section>
 
-      <!-- BIRTHDAY -->
-      <li class="contact-item">
-        <div class="icon-box">
-          <ion-icon name="calendar-outline"></ion-icon>
-        </div>
-        <div class="contact-info">
-          <p class="contact-title">Birthday</p>
-          <time datetime="1999-11-01">Nov 01, 1999</time>
-        </div>
-      </li>
+    <section>
+      <h2>Contact</h2>
+      <p>Email: mdabdur.rahim@metropolia.fi</p><br>
+      <button class="btn">Contact Me</button>
+    </section>
 
-      <!-- LOCATION -->
-      <li class="contact-item">
-        <div class="icon-box">
-          <ion-icon name="location-outline"></ion-icon>
-        </div>
-        <div class="contact-info">
-          <p class="contact-title">Location</p>
-          <address>Helsinki, Finland</address>
-        </div>
-      </li>
-
-    </ul>
-
-    <div class="separator"></div>
-
-    <ul class="social-list">
-      <li class="social-item">
-        <a href="#" class="icon-box">
-          <img src="assets/images/linkedin-brands.svg" alt="">
-        </a>
-      </li>
-      <li class="social-item">
-        <a href="#" class="icon-box">
-          <img src="assets/images/github-brands.svg" alt="">
-        </a>
-      </li>
-    </ul>
+    <footer>© 2026 Md Abdur Rahim</footer>
 
   </div>
-
-</aside>
-
-<!-- MAIN CONTENT -->
-<div class="main-content">
-
-<nav class="navbar">
-  <ul class="navbar-list">
-    <li class="navbar-item"><button class="navbar-link active" data-nav-link>About</button></li>
-    <li class="navbar-item"><button class="navbar-link" data-nav-link>Resume</button></li>
-    <li class="navbar-item"><button class="navbar-link" data-nav-link>Portfolio</button></li>
-    <li class="navbar-item"><button class="navbar-link" data-nav-link>Blog</button></li>
-    <li class="navbar-item"><button class="navbar-link" data-nav-link>Contact</button></li>
-  </ul>
-</nav>
-
-<!-- ABOUT -->
-<article class="about active" data-page="about">
-  <header>
-    <h2 class="h2 article-title">About me</h2>
-  </header>
-
-  <section class="about-text">
-    <p>
-      I am an IT support student currently studying
-      <strong>Tieto‑ ja viestintätekniikan perustutkinto (IT‑tukihenkilö)</strong>
-      at <strong>Taitotalo</strong> in Finland.
-      I am passionate about troubleshooting, user support,
-      Windows systems, networking, and Microsoft 365 environments.
-    </p>
-  </section>
-</article>
 
 </div>
 
-</main>
-
-<script src="./assets/js/script.js"></script>
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
 </body>
 </html>
-``
