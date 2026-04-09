@@ -19,6 +19,7 @@
   --card: rgba(255,255,255,0.08);
   --accent: #6366f1;
   --text: #e5e7eb;
+  --muted: #b0b5d6;
 }
 
 /* ================= BODY ================= */
@@ -26,10 +27,11 @@ body {
   font-family: "Segoe UI", system-ui, sans-serif;
   background: var(--bg);
   color: var(--text);
+  line-height: 1.7;
   overflow-x: hidden;
 }
 
-/* ================= BACKGROUND ANIMATION ================= */
+/* ================= BACKGROUND MOTION ================= */
 body::before {
   content: "";
   position: fixed;
@@ -38,9 +40,8 @@ body::before {
     radial-gradient(circle at 20% 20%, rgba(99,102,241,.18), transparent 40%),
     radial-gradient(circle at 80% 80%, rgba(34,211,238,.12), transparent 40%);
   z-index: -1;
-  animation: bgMove 16s ease-in-out infinite;
+  animation: bgMove 20s ease-in-out infinite;
 }
-
 @keyframes bgMove {
   50% { transform: translateY(-50px); }
 }
@@ -54,136 +55,103 @@ body::before {
 /* ================= SIDEBAR ================= */
 .sidebar {
   width: 280px;
-  padding: 30px;
-  background: rgba(0,0,0,0.4);
+  padding: 40px 30px;
+  background: rgba(0,0,0,0.45);
   backdrop-filter: blur(14px);
-  animation: slideInLeft 1s ease;
-}
-
-@keyframes slideInLeft {
-  from { transform: translateX(-60px); opacity: 0; }
-  to   { transform: translateX(0); opacity: 1; }
 }
 
 .sidebar img {
   width: 120px;
   border-radius: 18px;
   margin-bottom: 20px;
-  box-shadow: 0 0 25px var(--accent);
-  animation: float 5s ease-in-out infinite;
-}
-
-@keyframes float {
-  50% { transform: translateY(-10px); }
+  box-shadow: 0 0 30px var(--accent);
 }
 
 .sidebar h1 {
   font-size: 22px;
 }
-
 .sidebar p {
-  opacity: 0.8;
-  margin-top: 6px;
+  color: var(--muted);
+  font-size: 14px;
 }
 
 /* ================= MAIN ================= */
 .main {
   flex: 1;
-  padding: 50px;
-  animation: fadeIn 1s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity:0 }
-  to   { opacity:1 }
+  padding: 80px 60px;
 }
 
 /* ================= SECTIONS ================= */
 section {
-  margin-bottom: 80px;
+  margin-bottom: 160px; /* makes the page LONG */
 }
 
 section h2 {
-  font-size: 32px;
+  font-size: 36px;
   color: var(--accent);
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   position: relative;
 }
-
 section h2::after {
   content: "";
-  position: absolute;
-  width: 60px;
+  width: 70px;
   height: 3px;
   background: var(--accent);
+  position: absolute;
   left: 0;
-  bottom: -6px;
+  bottom: -10px;
 }
 
-/* ================= CARDS ================= */
+/* ================= GRID ================= */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
-  gap: 24px;
+  gap: 28px;
 }
 
 .card {
   background: var(--card);
-  padding: 26px;
+  padding: 32px;
   border-radius: 22px;
   backdrop-filter: blur(12px);
-  transition: 0.4s;
-  animation: popUp 0.8s ease both;
+  transition: 0.35s;
 }
-
-@keyframes popUp {
-  from { opacity:0; transform: translateY(20px); }
-  to   { opacity:1; transform: translateY(0); }
-}
-
 .card:hover {
-  transform: translateY(-12px) scale(1.03);
-  box-shadow: 0 0 40px rgba(99,102,241,0.4);
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(99,102,241,0.35);
 }
 
 .card h3 {
   color: #a5b4fc;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 /* ================= BUTTON ================= */
 .btn {
-  padding: 12px 26px;
+  padding: 14px 30px;
   border-radius: 999px;
   background: var(--accent);
   border: none;
   color: white;
   font-size: 15px;
   cursor: pointer;
-  transition: 0.3s;
 }
-
 .btn:hover {
-  box-shadow: 0 0 25px var(--accent);
-  transform: scale(1.05);
+  box-shadow: 0 0 30px var(--accent);
 }
 
 /* ================= FOOTER ================= */
 footer {
   text-align: center;
   opacity: 0.6;
-  margin-top: 40px;
+  font-size: 13px;
 }
 
 /* ================= RESPONSIVE ================= */
-@media(max-width: 900px){
-  .container {
-    flex-direction: column;
-  }
-  .sidebar {
-    width: 100%;
-    text-align: center;
-  }
+@media (max-width: 900px) {
+  .container { flex-direction: column; }
+  .sidebar { width: 100%; text-align: center; }
+  .main { padding: 60px 24px; }
 }
 </style>
 </head>
@@ -192,69 +160,73 @@ footer {
 
 <div class="container">
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-    <rahim.jpg alt="Md Abdur Rahim">
-    <h1>Md Abdur Rahim</h1>
-    <p>IT Support Specialist</p>
-    <p>ICT Student · Taitotalo</p>
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <img src="rahim.jpg" alt="Md Abdur Rahim">
+  <h1>Md Abdur Rahim</h1>
+  <p>IT Support Specialist</p>
+  <p>ICT Student · Taitotalo</p>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- PAGE 1: HERO -->
+<section>
+  <h2>Welcome</h2>
+  <p>
+    Hello, I’m Md Abdur Rahim — an IT Support Specialist and ICT student.
+    This portfolio showcases my skills, interests, and services in IT support,
+    troubleshooting, and modern IT environments.
+  </p>
+</section>
+
+<!-- PAGE 2: ABOUT -->
+<section>
+  <h2>About Me</h2>
+  <p>
+    I am currently studying <strong>Tieto‑ ja viestintätekniikan perustutkinto</strong>
+    at Taitotalo. I am passionate about helping users, solving technical problems,
+    and maintaining stable IT systems.
+  </p>
+  <p>
+    My interest includes Windows systems, Microsoft 365, networking basics,
+    and customer‑focused IT support.
+  </p>
+</section>
+
+<!-- PAGE 3: SKILLS -->
+<section>
+  <h2>Skills</h2>
+  <div class="grid">
+    <div class="card"><h3>Windows & macOS</h3>User support, troubleshooting</div>
+    <div class="card"><h3>Microsoft 365</h3>Outlook, Teams, OneDrive</div>
+    <div class="card"><h3>Networking</h3>DNS, IP, Wi‑Fi</div>
+    <div class="card"><h3>Hardware</h3>PCs, laptops, printers</div>
   </div>
+</section>
 
-  <!-- MAIN CONTENT -->
-  <div class="main">
-
-    <section>
-      <h2>About Me</h2>
-      <p>
-        I am an IT support student studying
-        <strong>Tieto‑ ja viestintätekniikan perustutkinto</strong>
-        at Taitotalo. I enjoy troubleshooting systems,
-        helping users, and learning modern IT environments.
-      </p>
-    </section>
-
-    <section>
-      <h2>Skills</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Windows & macOS</h3>
-          User support, troubleshooting
-        </div>
-        <div class="card">
-          <h3>Microsoft 365</h3>
-          Outlook, Teams, OneDrive
-        </div>
-        <div class="card">
-          <h3>Networking</h3>
-          IP, DNS, Wi‑Fi issues
-        </div>
-        <div class="card">
-          <h3>Hardware</h3>
-          PCs, printers, peripherals
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Services</h2>
-      <div class="grid">
-        <div class="card">Remote IT Support</div>
-        <div class="card">On‑site Support</div>
-        <div class="card">Device Setup</div>
-        <div class="card">User Assistance</div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Contact</h2>
-      <p>Email: mdabdur.rahim@metropolia.fi</p><br>
-      <button class="btn">Contact Me</button>
-    </section>
-
-    <footer>© 2026 Md Abdur Rahim</footer>
-
+<!-- PAGE 4: SERVICES & EXPERIENCE -->
+<section>
+  <h2>Services & Focus</h2>
+  <div class="grid">
+    <div class="card">Remote IT Support</div>
+    <div class="card">On‑site Support</div>
+    <div class="card">Device Setup & Configuration</div>
+    <div class="card">User Assistance & Training</div>
   </div>
+</section>
 
+<!-- PAGE 5: CONTACT -->
+<section>
+  <h2>Contact</h2>
+  <p>Email: mdabdur.rahim@metropolia.fi</p><br>
+  <button class="btn">Contact Me</button>
+</section>
+
+<footer>© 2026 Md Abdur Rahim</footer>
+
+</main>
 </div>
 
 </body>
